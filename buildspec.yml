@@ -20,5 +20,5 @@ phases:
       - docker push $MY_REPO:$IMAGE_TAG
       - printf '[{"name":"awscicd","imageUri":"%s"}]' $MY_REPO:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
-  artifacts:
-    files: imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
