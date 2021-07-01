@@ -1,13 +1,14 @@
-FROM golang:1.12-alpine AS build
-#Install git
-RUN apk add --no-cache git
-#Get the hello world package from a GitHub repository
-RUN go get github.com/golang/example/hello
-WORKDIR /go/src/github.com/golang/example/hello
-# Build the project and send the output to /bin/HelloWorld 
-RUN go build -o /bin/HelloWorld
-
-FROM golang:1.12-alpine
-#Copy the build's output binary from the previous build container
-COPY --from=build /bin/HelloWorld /bin/HelloWorld
-ENTRYPOINT ["/bin/HelloWorld"]
+# Step 1, membuat binary file
+FROM golang:alpine AS builder
+RUN apk update && apk add --no-cache git
+WORKDIR $GOPATH/src/mypackage/myapp/
+# Tambahan ENV penting, karena bila tidak ditambahkan, binary tidak jalan pada saat running di scratch
+ENV CGO_ENABLED=0
+COPY . .
+# Melakukan instalasi terhadap library yang kita gunakan
+RUN go get -d -v
+RUN go build -o /go/bin/main
+# Step 2, meletakkan binary file diatas scratch
+FROM scratch
+COPY --from=builder /go/bin/main /go/bin/main
+ENTRYPOINT ["/go/bin/main"]
