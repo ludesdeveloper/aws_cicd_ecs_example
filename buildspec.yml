@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - MY_REPO=public.ecr.aws/u8w5v1g5/awscicd
+      - MY_REPO=568437762324.dkr.ecr.ap-southeast-1.amazonaws.com/awscicd
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $MY_REPO
   build:
     commands:
