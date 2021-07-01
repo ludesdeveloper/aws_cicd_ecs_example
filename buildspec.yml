@@ -12,7 +12,7 @@ phases:
       - echo Building the Docker image...
       - IMAGE_TAG=latest
       - docker build -t $MY_REPO:$IMAGE_TAG .
-      - docker tag $MY_REPO:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$MY_REPO:$IMAGE_TAG
+      #- docker tag $MY_REPO:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$MY_REPO:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
