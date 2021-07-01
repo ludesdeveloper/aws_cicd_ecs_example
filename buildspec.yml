@@ -18,7 +18,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $MY_REPO:$IMAGE_TAG
-      - printf '[{"name":"%s","imageUri":"%s"}]' $MY_REPO $MY_REPO:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"awscicd","imageUri":"%s"}]' $MY_REPO:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
