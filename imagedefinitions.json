@@ -1,6 +1,0 @@
-[
-    {
-        "name": "awscicd",
-        "imageUri": "568437762324.dkr.ecr.ap-southeast-1.amazonaws.com/awscicd:latest"
-    }
-]
